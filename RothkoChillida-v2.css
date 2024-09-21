@@ -57,7 +57,7 @@ body{
     height: 40%;
     width: 100%;
     
-    font-family: Calibri;
+    font-family: 'Calibri', 'Open Sans';
     font-size: clamp(1.5rem, 3vw, 2.5rem);         /*clamp(1.5rem, 3vw, 2.5rem)*/
     font-weight: bold;
     line-height: clamp(1rem, 3vw, 2rem);        /*clamp(1rem, 3vw, 2rem)*/
