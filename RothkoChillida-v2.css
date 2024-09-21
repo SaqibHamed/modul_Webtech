@@ -1,7 +1,7 @@
 
 /*Global Setup*/
 *{
-    font-family:'Neue Haas Grotesk Display Pro', sans-serif;
+    font-family:'Neue Haas Grotesk Display Pro', 'sans-serif';
 }
 
 
@@ -57,7 +57,7 @@ body{
     height: 40%;
     width: 100%;
     
-    font-family: 'Calibri', 'Open Sans';
+    font-family: 'Calibri', 'Open Sans', 'Candara', 'Segoe', 'Segoe UI', 'Optima', 'Arial', 'sans-serif';   
     font-size: clamp(1.5rem, 3vw, 2.5rem);         /*clamp(1.5rem, 3vw, 2.5rem)*/
     font-weight: bold;
     line-height: clamp(1rem, 3vw, 2rem);        /*clamp(1rem, 3vw, 2rem)*/
