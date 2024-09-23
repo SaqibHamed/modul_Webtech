@@ -1,0 +1,147 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: beige;
+}
+
+.mainbody{
+    height: 100%;
+    width: 90%;
+    
+    display: flex;
+    flex-direction: row;
+    align-self:center;
+
+    display: grid;
+    border: solid purple;
+    grid-template-rows: 2fr 2fr 1fr 1fr 1fr 2fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.item1{
+    background-color: grey;
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.item2{
+    background-color: grey;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 7;
+    grid-row-end: 8;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.item3{
+    background-color: #01438f;
+    text-align: right;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 5;
+    grid-row-end: 7;
+}
+.item4{
+    background-color: rgb(0, 0, 0);
+    color: grey;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+.item5{
+    background-color: orangered;
+    font-family: bahnschrift;
+    overflow: hidden;
+    font-size: 250px;
+    color: beige;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.item6{
+    background-color: black;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+.item7{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+.item8{
+    background-color: black;
+    color: beige;
+    text-align: left;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+.item9{
+    background-color: black;
+    color: beige;
+    text-align: left;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+.TextA{
+    font-family: bahnschrift;
+    text-transform: uppercase;
+    font-size: 100px;
+    line-height: 90%;
+}
+.textB{
+    font-family: bahnschrift;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-transform: uppercase;
+    text-align:center;
+    font-size: 50px;
+    line-height: 90%;
+    padding-bottom: 2%;
+}
+.textC{
+    font-family: bahnschrift;
+    color: beige;
+    text-transform: uppercase;
+    text-align:center;
+    font-size: 35px;
+    line-height: 90%;
+}
+.textD{
+    font-family: bahnschrift;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    padding-top: 2%;
+    padding-right: 2%;
+    text-align:right;
+    font-size: 30px;
+    line-height: 90%;
+}
+.textE{
+    font-family: bahnschrift;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    padding-top: 2%;
+    padding-right: 2%;
+    text-align:center;
+    font-size: 25px;
+    line-height: 90%;
+}
