@@ -1,7 +1,7 @@
 
 /*Global Setup*/
 *{
-    font-family:'Neue Haas Grotesk Display Pro', 'sans-serif';
+    font-family:'Neue Haas Grotesk Display Pro', sans-serif;
 }
 
 
@@ -44,7 +44,10 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+
+    animation:titel-intro 2s forwards, title-static 5s infinite;
 }
+
 
 
 /* textarea for the red section */
@@ -57,7 +60,7 @@ body{
     height: 40%;
     width: 100%;
     
-    font-family: 'Calibri', 'Open Sans', 'Candara', 'Segoe', 'Segoe UI', 'Optima', 'Arial', 'sans-serif';   
+    font-family: Calibri;
     font-size: clamp(1.5rem, 3vw, 2.5rem);         /*clamp(1.5rem, 3vw, 2.5rem)*/
     font-weight: bold;
     line-height: clamp(1rem, 3vw, 2rem);        /*clamp(1rem, 3vw, 2rem)*/
@@ -68,6 +71,9 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    animation-name: redbox-intro;
+    animation-duration: 1s;
 }
 
 
@@ -98,6 +104,7 @@ body{
         display: flex;
         flex-direction: row;
         transform-origin: center;
+        animation:titel-intro 2s;
     }
     .redbox{
         
@@ -148,5 +155,52 @@ body{
 
         flex-direction: row;
         align-items: center;
+    }
+}
+
+/* Animations */
+
+@keyframes titel-intro{
+    0%{
+        transform: translate(0, -1000px);
+        color: #663d3900;
+    }
+    70%{
+        color: #663d39;
+    }
+    100%{
+        transform:translate(0px,0);
+        color: #362724;
+    }
+}
+@keyframes redbox-intro{
+    0%{
+        transform: translate(0, 500px);
+        background-color: #663d39;
+        color: rgba(0, 0, 0, 0);
+    }
+    70%{
+        background-color: #663d39;
+        transform: translate(0, 200px);
+        color: rgba(0, 0, 0, 0);
+    }
+    100%{
+        transform:translate(0px,0);
+        background-color:#b9322e;
+        color: #362724;
+    }
+}
+@keyframes title-static{
+    0%{
+        line-height: calc(0.8em + 0.1vw);
+        color: #362724;
+    }
+    50%{
+        line-height: calc(0.82em + 0.1vw);
+        color: #3a241f;
+    }
+    100%{
+        line-height: calc(0.8em + 0.1vw);
+        color: #362724;
     }
 }
