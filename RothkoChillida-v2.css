@@ -1,22 +1,25 @@
 
 /*Global Setup*/
+
 *{
     font-family:'Neue Haas Grotesk Display Pro', sans-serif;
 }
 
 
 /* Background and child setup */
+
 body{
     background-color: #663d39;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 
-
 /* mainframe for the whole structure */
+
 .mainbody{
     width: 85%;
     height: 95vh;
@@ -28,6 +31,7 @@ body{
 
 
 /* textarea for the title*/
+
 .title{
     width: 100%;
     height: 100%;
@@ -35,22 +39,31 @@ body{
 
     font-size: clamp(12rem, 10vw + 10rem, 24rem);
     font-weight: bold;
+    letter-spacing: 0px;
     line-height: calc(0.8em + 0.1vw);
     writing-mode: horizontal-tb;
     color: #362724;
     text-align: center;
+    z-index: 1;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
 
-    animation:titel-intro 2s forwards, title-static 5s infinite;
+    animation:titel-intro 2s forwards;
+    transition-duration: 0.5s;
+}
+.title:hover{
+    color: #b9322e;
+    letter-spacing: 3px;
+    justify-content: flex-end;
+    transition-duration: 0.5s;
 }
 
 
-
 /* textarea for the red section */
+
 .redbox{
     
     padding-left: 3%;
@@ -60,20 +73,42 @@ body{
     height: 40%;
     width: 100%;
     
-    font-family: Calibri;
+    font-family: Calibri,'Gill Sans', 'Gill Sans MT',  'Trebuchet MS', sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.5rem);         /*clamp(1.5rem, 3vw, 2.5rem)*/
     font-weight: bold;
     line-height: clamp(1rem, 3vw, 2rem);        /*clamp(1rem, 3vw, 2rem)*/
-    writing-mode: horizontal-tb;
-    color: #362724;
     background-color: #b9322e;
+    z-index: 2;
     
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
 
     animation-name: redbox-intro;
-    animation-duration: 1s;
+    animation-duration: 3s;
+
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+.redbox:hover{
+    width: 65%;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+.red1{
+    color: #362724;
+    animation: slide-in-blurred-bottom 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+    letter-spacing: 0px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+.red1:hover{
+    color: #663d39;
+    letter-spacing: 3px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
 }
 
 
@@ -115,9 +150,15 @@ body{
         
         font-size: 3vw;
         line-height: 3vw;
-        writing-mode: horizontal-tb;
         
-        flex-direction: row;
+        flex-direction: column;
+        align-items: left;
+    }
+    .redbox:hover{
+        height: 20%;
+    }
+    .title:hover{
+        justify-content: flex-end;
     }
 }
 
@@ -144,63 +185,51 @@ body{
         line-height: 30vw;
     }
     .redbox{
-        height: 50%;
+        height: 40%;
         width: 100%;
         padding-left: 5%;
         rotate: 180deg;
         
         font-size: 4vw;
         line-height: 4vw;
-        writing-mode: horizontal-tb;
 
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
+        align-items: left;
+    }
+    .redbox:hover{
+        height: 40%;
     }
 }
 
-/* Animations */
+
+/* Animation Keyframes */
 
 @keyframes titel-intro{
     0%{
         transform: translate(0, -1000px);
-        color: #663d3900;
+        opacity: 0;
+        
     }
     70%{
-        color: #663d39;
+        opacity: 0.7;
     }
     100%{
         transform:translate(0px,0);
-        color: #362724;
+        opacity: 1;
+
     }
 }
 @keyframes redbox-intro{
     0%{
-        transform: translate(0, 500px);
-        background-color: #663d39;
-        color: rgba(0, 0, 0, 0);
+        transform: translate(0px, 500px);
+        opacity: 0;
     }
     70%{
-        background-color: #663d39;
-        transform: translate(0, 200px);
-        color: rgba(0, 0, 0, 0);
+        opacity: 0.7;
+        transform: translate(0px, 0px);
     }
     100%{
-        transform:translate(0px,0);
-        background-color:#b9322e;
-        color: #362724;
-    }
-}
-@keyframes title-static{
-    0%{
-        line-height: calc(0.8em + 0.1vw);
-        color: #362724;
-    }
-    50%{
-        line-height: calc(0.82em + 0.1vw);
-        color: #3a241f;
-    }
-    100%{
-        line-height: calc(0.8em + 0.1vw);
-        color: #362724;
+        transform:translate(0px,0px);
+        opacity: 1;  
     }
 }
