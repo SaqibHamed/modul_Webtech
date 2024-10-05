@@ -15,6 +15,14 @@ body{
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    cursor: none;       /* Cursor */
+
+
+    /* Deaktiviert Text Auswahl im Browser */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 
@@ -52,7 +60,7 @@ body{
     justify-content: flex-end;
 
     animation:titel-intro 2s forwards;
-    transition-duration: 0.5s;
+    /* transition-duration: 0.5s; */
 }
 .title:hover{
     color: #b9322e;
@@ -111,10 +119,49 @@ body{
     transition-timing-function: ease-in-out;
 }
 
+#customCursor {
+    display:initial; /* Versteckt den benutzerdefinierten Cursor */
+}
+
+/* Style für den runden Cursor */
+
+#customCursor {
+    width: 40px;
+    height: 40px;
+    /* border-radius: 50%; */
+    background-color: #362724;
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background-color: #362724;
+    pointer-events: none;
+    z-index: 1000;
+    display: block;  /* Immer sichtbar, außer in Tablet-View */
+    animation-name: curs-rot;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+
+
+}
+@keyframes curs-rot {
+    0% {
+        rotate: 0deg;
+        animation-timing-function: linear;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}
+
 
 /*Tablet-Mode*/
 
 @media (max-width: 900px) { 
+    
+    body{
+        cursor: auto;
+    }
+    
     .mainbody{
         rotate: 180deg;
         height: 95vh;
@@ -130,7 +177,7 @@ body{
         height: 100%;
         width: 50vw;
         rotate: 0deg;
-        
+
         font-size: 30vw;
         text-align: left;
         writing-mode: vertical-rl;
@@ -160,6 +207,10 @@ body{
     .title:hover{
         justify-content: flex-end;
     }
+}
+
+#customCursor {
+    display: none; /* Versteckt den benutzerdefinierten Cursor */
 }
 
 
@@ -233,3 +284,10 @@ body{
         opacity: 1;  
     }
 }
+
+
+
+
+/* ---------------------------------------------------- */
+
+
