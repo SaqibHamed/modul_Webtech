@@ -1,5 +1,5 @@
-# Abgabe A Rothko Chillida
+# Abgabe 1A Rothko Chillida
 [https://saqibhamed.github.io/modul_Webtech/ Project Nr. 1](https://saqibhamed.github.io/modul_Webtech/RothkoChillida-v2.html)
 
-# Abgabe B GRAPHIS
+# Abgabe 1B GRAPHIS
 [https://saqibhamed.github.io/modul_Webtech/ Project Nr. 2](https://saqibhamed.github.io/modul_Webtech/graphis.html)
