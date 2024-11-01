@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flaschen im Weltraum</title>
+  <style>
+    * {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000;
+      position: absolute;
+    }
+
+    /* Auswahlverhinderung */
+    body,
+    .space-container,
+    .bottle,
+    .bottom-bar,
+    .popup {
+      user-select: none;
+    }
+
+    .space-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+
+    .bottle {
+      position: absolute;
+      width: 80px;
+      height: 160px;
+      opacity: 0.8;
+      cursor: pointer;
+      z-index: 10;
+      animation: float infinite ease-in-out, slideInForward 0.6s ease-out;
+    }
+
+    .background {
+      width: 100vw;
+      height: 100vh;
+      background-image: url('Img/Weltall.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rotating-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('Img/sterne.png');
+      background-size: cover;
+      background-position: center;
+      animation: rotateStars 1600s linear infinite;
+      mix-blend-mode: screen;
+      z-index: 4;
+    }
+
+    .rotating-layer2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120%;
+      height: 120%;
+      background-image: url('Img/sterne.png');
+      background-size: cover;
+      background-position: center;
+      animation: rotateStars2 1000s linear infinite;
+      mix-blend-mode: screen;
+      z-index: 5;
+    }
+
+    .earth {
+      background-image: url('Img/Planet.png');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      transform: translateY(200px);
+      width: 40vw;
+      height: 40vw;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      mix-blend-mode: screen;
+      filter: blur(0.05rem);
+    }
+
+    .ufo {
+      background-image: url('Img/Ufo.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      width: 20vw;
+      height: 20vw;
+      top: 50px;
+      left: 50px;
+      z-index: 10;
+      filter: blur(0.02rem);
+      animation: ufo 25s ease-in-out infinite;
+    }
+
+    @keyframes ufo {
+      0% {
+        transform: translate(0px, 1800px) rotate(0deg);
+      }
+
+      30% {
+        transform: translate(0px, 0px) rotate(-7deg);
+      }
+
+      50% {
+        transform: translate(0px, 10px) rotate(7deg);
+      }
+
+      70% {
+        transform: translate(0px, 0px) rotate(-7deg);
+      }
+
+      80% {
+        transform: translate(0px, 1800px) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(0px, 1800px) rotate(0deg);
+      }
+    }
+
+
+    .walle {
+      background-image: url('Img/Walle.png');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      width: 10vw;
+      height: 10vw;
+      bottom: 50px;
+      left: 5vw;
+      z-index: 1000;
+      filter: blur(0.02rem);
+      animation: walle 100s ease-in-out infinite;
+    }
+
+
+    @keyframes walle {
+      0% {
+        transform: translate(5vw, 0px);
+        opacity: 0;
+      }
+      30% {
+        transform: translate(5vw, 0px);
+        opacity: 0;
+      }
+
+      33% {
+        transform: translate(5vw, 0px);
+        opacity: 1;
+      }
+
+      70% {
+        transform: translate(75vw, 0px);
+        opacity: 1;
+      }
+
+      73% {
+        transform: translate(75vw, 0px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translate(5vw, 0px);
+        opacity: 0;
+      }
+    }
+
+    .alien {
+      background-image: url('Img/Alien.png');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      width: 73.3vw;
+      height: 70vw;
+      bottom: 0px;
+      z-index: 1100;
+      filter: blur(0.02rem);
+      animation: alien 50s ease-in-out infinite;
+    }
+
+
+    @keyframes alien {
+      0% {
+        transform: translate(103vw, 0px);
+      }
+
+      30% {
+        transform: translate(103vw, 0px);
+      }
+
+      60% {
+        transform: translate(73vw, 0px);
+      }
+
+      100% {
+        transform: translate(103vw, 0px);
+      }
+
+      100% {
+        transform: translate(103vw, 0px);
+      }
+    }
+
+
+
+    @keyframes rotateStars {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotateStars2 {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(-360deg);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0px, 0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(50px, -100px) rotate(180deg);
+      }
+
+      100% {
+        transform: translate(0px, 0px) rotate(360deg);
+      }
+    }
+
+    @keyframes slideInForward {
+      0% {
+        transform: scale(0%);
+      }
+
+      100% {
+        transform: scale(100%);
+      }
+    }
+
+    /* Font */
+    @import url('https://fonts.googleapis.com/css2?family=Nova+Cut&family=Orbitron:wght@400..900&display=swap');
+
+    /* Popup Styles */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 624px;
+      height: 400px;
+      padding: 50px;
+      display: none;
+      z-index: 100;
+      background-image: url('Img/Pergament.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100%;
+    }
+
+    .popup h2 {
+      margin: 30px;
+      font-size: 2.7rem;
+      font-family: 'Baskerville', sans-serif;
+    }
+
+    .popup p {
+      margin: 30px 100px 30px 30px;
+      font-size: 1.5rem;
+      font-family: "Nova Cut", 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 80px;
+      right: 120px;
+      background: none;
+      border: none;
+      color: black;
+      cursor: pointer;
+
+    }
+
+    .btn {
+      width: 40px;
+      height: 40px;
+      background-image: url('Img/Button.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .close-btn:hover {
+      color: #555;
+    }
+
+    /* Bottom Bar Styles */
+    .bottom-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90vw;
+      height: 50px;
+      background-color: rgb(0, 0, 0);
+      border-radius: 25px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      z-index: 50;
+    }
+
+    .slot {
+      position: relative;
+      width: 25px;
+      height: 25px;
+      background-color: rgb(255, 255, 255);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .slot:hover {
+      transform: scale(1.2);
+    }
+
+    .slot.filled {
+      background-color: #2813e0;
+    }
+
+    /* Tooltip/Sprechblase für Hover */
+    .tooltip {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: black;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      text-align: center;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .tooltip .title {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .slot:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background">
+    <div class="rotating-layer"></div>
+    <div class="rotating-layer2"></div>
+    <div class="earth"></div>
+    <a href="https://de.wikipedia.org/wiki/UFO" target="_blank">
+      <div class="ufo"></div>
+    </a>
+    <div class="walle"></div>
+    <div class="alien"></div>
+    <div class="space-container" id="spaceContainer"></div>
+  </div>
+
+  <!-- Popup Template -->
+  <div id="popup" class="popup">
+    <button class="close-btn" onclick="closePopup()">
+      <div class="btn"></div>
+    </button>
+    <h2 id="popupTitle">Flaschenpost</h2>
+    <p id="popupText">Hier ist deine Nachricht aus der Flaschenpost!</p>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div id="bottomBar" class="bottom-bar"></div>
+
+  <!-- Audio Elements -->
+  <audio id="backgroundMusic" src="SFX/bgm.mp3" loop></audio>
+  <audio id="hoverSound" src="SFX/hover.mp3"></audio>
+  <audio id="unhoverSound" src="SFX/unhover.mp3"></audio>
+  <audio id="closeSound" src="SFX/close.mp3"></audio>
+
+  <script>
+    const container = document.getElementById('spaceContainer');
+    const bottomBar = document.getElementById('bottomBar');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const hoverSound = document.getElementById('hoverSound');
+    const unhoverSound = document.getElementById('unhoverSound');
+    const closeSound = document.getElementById('closeSound');
+
+    // Array für mehrere Klick-Sounds
+    const clickSounds = [
+      new Audio('SFX/click-1.mp3'),
+      new Audio('SFX/click-2.mp3'),
+      new Audio('SFX/click-3.mp3'),
+      new Audio('SFX/click-4.mp3')
+    ];
+
+    let bottleCount = 0;           // Anzahl der Flaschen
+    let messages = [];             // Alle Nachrichten aus der CSV-Datei
+    let clickedBottles = [];       // Nachrichten, die bereits einer Bubble zugeordnet wurden
+    let availableMessages = [];    // Liste aller verfügbaren Nachrichten
+
+    // Hintergrundmusik starten
+    window.onload = () => {
+      backgroundMusic.play();
+      loadCSVData();
+    };
+
+    // CSV-Daten laden
+    async function loadCSVData() {
+      const response = await fetch('Flaschenpost.csv');
+      const csvText = await response.text();
+      const rows = csvText.split('\n').slice(1);
+
+      rows.forEach((row, index) => {
+        const [title, text] = row.split(';');
+        if (title && text) {
+          messages.push({ title: title.trim(), text: text.trim(), index });
+        }
+      });
+
+      bottleCount = messages.length - 1;  // Anzahl der Flaschen auf Basis der Nachrichten
+      availableMessages = [...messages].sort(() => 0.5 - Math.random());
+      createBottomBarSlots(messages.length);
+      manageBottles();
+    }
+
+    // Slots für den unteren Balken erstellen
+    function createBottomBarSlots(count) {
+      for (let i = 0; i < count; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'slot';
+        slot.onclick = () => showSavedMessage(i);
+        slot.onmouseover = () => hoverSound.play();
+        slot.onmouseleave = () => unhoverSound.play(); // Unhover-Sound
+        slot.innerHTML = '<span class="tooltip"></span>';
+        bottomBar.appendChild(slot);
+      }
+    }
+
+    // Popup öffnen
+    function openPopup(message) {
+      document.getElementById('popupTitle').textContent = message.title;
+      document.getElementById('popupText').textContent = message.text;
+      document.getElementById('popup').style.display = 'block';
+    }
+
+    // Popup schließen
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      closeSound.play();
+    }
+
+    // Zufälligen Klick-Sound abspielen
+    function playRandomClickSound() {
+      const randomSound = clickSounds[Math.floor(Math.random() * clickSounds.length)];
+      randomSound.play();
+    }
+
+    // Flasche erstellen
+    function createBottle() {
+      const bottle = document.createElement('img');
+      bottle.src = 'Img/Flaschenpost.png';
+      bottle.className = 'bottle';
+      bottle.style.top = Math.random() * 100 + 'vh';
+      bottle.style.left = Math.random() * 100 + 'vw';
+      bottle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+
+      // Verhindert das Ziehen der Flaschengrafik
+      bottle.ondragstart = (event) => {
+        event.preventDefault();
+      };
+
+      bottle.onclick = () => {
+        playRandomClickSound(); // Click-Sound abspielen, unabhängig davon, ob eine Nachricht vorhanden ist
+        if (availableMessages.length > 0) {
+          // Popup öffnen und Nachricht anzeigen, falls verfügbar
+          const randomMessage = availableMessages.pop();
+          openPopup(randomMessage);
+          addMessageToBottomBar(randomMessage);
+        }
+        bottle.remove(); // Flasche in jedem Fall entfernen
+      };
+
+      container.appendChild(bottle);
+    }
+
+    // Nachricht zum unteren Balken hinzufügen
+    function addMessageToBottomBar(message) {
+      const slot = bottomBar.children[message.index];
+      if (slot) {
+        slot.classList.add('filled');
+        const tooltip = slot.querySelector('.tooltip');
+        tooltip.innerHTML = `<span class="title">${message.title}</span><br>${message.text}`;
+      }
+    }
+
+    // Nachricht anzeigen
+    function showSavedMessage(index) {
+      if (clickedBottles[index]) {
+        openPopup(clickedBottles[index]);
+      }
+    }
+
+    // Nachricht anzeigen bei Klick auf einen Bubble im Balken
+    function showSavedMessage(index) {
+      if (clickedBottles[index]) {
+        openPopup(clickedBottles[index]); // Popup öffnen und Nachricht anzeigen
+      }
+    }
+
+    // Nachricht zum unteren Balken hinzufügen
+    function addMessageToBottomBar(message) {
+      const slot = bottomBar.children[message.index];
+      if (slot) {
+        slot.classList.add('filled');
+        slot.querySelector('.tooltip').textContent = message.text;
+        slot.onclick = () => showSavedMessage(message.index); // Klickfunktion zum Öffnen des Popups
+      }
+    }
+
+    // Bottles verwalten
+    function manageBottles() {
+      if (document.querySelectorAll('.bottle').length < bottleCount && availableMessages.length > 0) {
+        createBottle();
+      }
+      setTimeout(manageBottles, Math.random() * 3000 + 2000);
+    }
+  </script>
+</body>
+
+</html>
